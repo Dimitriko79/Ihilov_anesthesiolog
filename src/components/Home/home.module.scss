@@ -1,0 +1,120 @@
+.home{
+  width: 100%;
+  height: 100vh;
+  position: relative;
+  .home_container {
+    width: 460px;
+    position: absolute;
+    left: 50%;
+    top: 25%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    align-items: center;
+    .home_title {
+      color: rgb(0, 27, 77);
+      font-family: "Mikhmoret Rounded DL 1.1 AAA Bold", sans-serif;
+      font-size: 40px;
+      font-weight: 700;
+      line-height: 36px;
+    }
+    .home_actions{
+      display: inline-flex;
+      gap: 16px;
+      justify-content: center;
+      height: 56px;
+      .home_upload_send_button, .home_actions_upload_button{
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        width: 220px;
+        max-width: 100%;
+        border-radius: 28px;
+        border: none;
+        font-size: 16px;
+        font-family: "Noto Sans Hebrew", serif;
+        font-weight: 500;
+        color: #ffffff;
+        transition: all .3s linear;
+        //&:disabled{
+        //  opacity: 0.5;
+        //  cursor: default;
+        //}
+        &:disabled:hover{
+          background-color: #0093c9;
+          //opacity: 0.5;
+          //color: #ffffff;
+        }
+      }
+      .home_upload_send_button{
+        background-color: #0093c9;
+        &:hover, &:focus{
+          background-color: #017fad;
+          color: #ffffff;
+        }
+      }
+      .home_actions_upload_button {
+        background-color: #0046C9;
+        &:hover, &:focus{
+          background-color: #003AA7;
+          color: #ffffff;
+
+        }
+        input[type='file'] {
+          position: absolute;
+          opacity: 0;
+          z-index: 1;
+          height: 100%;
+          width: 100%;
+          cursor: pointer;
+        }
+        input::file-selector-button {
+          display: none;
+        }
+      }
+    }
+    .home_upload_button_error{
+      color: #ff0000;
+    }
+    .home_upload_button_list_files{
+      width: 100%;
+      list-style: none;
+      font-size: 14px;
+      font-family: "Noto Sans Hebrew", serif;
+      display: flex;
+      flex-direction: column;
+      direction: rtl;
+      gap: 10px;
+      padding: 0;
+      margin: 0;
+      li{
+        display: flex;
+        align-items: center;
+        gap: 16px;
+        button{
+          display: flex;
+          align-items: center;
+          background: none;
+          outline: none;
+          cursor: pointer;
+          border: none;
+          color: rgb(0, 27, 77);
+          padding: 0;
+          img{
+            height: 28px;
+            width: 28px;
+          }
+        }
+
+        p{
+          flex: 1;
+          margin: 0;
+          text-align: right;
+        }
+      }
+    }
+  }
+}

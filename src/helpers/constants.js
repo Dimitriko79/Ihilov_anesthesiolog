@@ -1,0 +1,21 @@
+export const LABELS = {
+    patient_details: "פרטי המטופל",
+    unit_name: "שם יחידה",
+    clinic_manager: "מנהל/ת המרפאה",
+    incharge_nurse: "אח/ות אחראי/ת",
+    phone: "טלפון",
+    fax: "פקס",
+    email: "דוא\"ל",
+    family_name: "שם המשפחה",
+    first_name: "שם פרטי",
+    id: "ת.ז.",
+    date_of_birth: "תאריך לידה",
+    age: "גיל",
+    gender: "מין",
+    health_insurance_name: "מבוטח בקופה",
+    address: "כתובת",
+    visit_details: "נתוני הביקור",
+    date: "תאריך",
+    hour: "שעה",
+    visit_number: "מספר ביקור"
+};

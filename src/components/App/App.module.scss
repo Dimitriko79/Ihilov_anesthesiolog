@@ -1,0 +1,21 @@
+.main{
+  position: relative;
+  margin: 0 auto;
+  width: 100%;
+  text-align: center;
+  .main_back_button{
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    width: clamp(4.25rem, 3.7908rem + 2.0408vw, 5.75rem);
+    height: 2.187rem;
+    background-color: #50c8e7;
+    border: none;
+    outline: none;
+    background-image: url("../../assets/back.svg");
+    background-repeat: no-repeat;
+    background-position: left;
+    background-size: contain;
+    cursor: pointer;
+  }
+}

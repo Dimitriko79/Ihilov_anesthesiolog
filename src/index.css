@@ -1,0 +1,22 @@
+:root {
+  font-family: "Mikhmoret Rounded DL 1.1 AAA Regular", sans-serif;
+  line-height: 1;
+  font-weight: 400;
+
+  color-scheme: light dark;
+  color: rgb(0, 27, 77);
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+a {
+
+}
+
+body {
+  background-color: #ffffff;
+  margin: 0;
+}

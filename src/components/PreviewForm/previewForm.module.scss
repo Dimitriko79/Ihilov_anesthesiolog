@@ -1,0 +1,445 @@
+.preview {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  font-family: "Assistant", sans-serif;
+  color: #000000;
+  width: 794px;
+  margin: 0 auto;
+  gap: 16px;
+  .preview_header{
+    .preview_header_name{
+      font-weight: bold;
+      margin: 8px 0;
+    }
+    .preview_header_container{
+      display: grid;
+      grid-template-columns: 1.2fr 0.4fr 1fr;
+      gap: 16px;
+      margin-top: 20px;
+      .preview_header__abbr{
+        display: flex;
+        flex-direction: column;
+        font-size: 16px;
+        gap: 4px;
+        span{
+          font-weight: 300;
+          transform: scaleY(1.2);
+          display: inline-block;
+        }
+        span:nth-child(2){
+          font-weight: 500;
+        }
+        span:nth-child(3){
+          font-weight: 700;
+        }
+      }
+      .preview_header__abbr:first-child{
+        align-items: flex-start;
+      }
+      .preview_header__abbr:last-child{
+        align-items: flex-end;
+      }
+    }
+  }
+  .preview_main{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    padding-bottom: 100px;
+    h1{
+      font-size: 24px;
+    }
+    .preview_main_personal_information{
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 20px;
+      font-size: 13px;
+      margin-bottom: 20px;
+      direction: rtl;
+      table{
+        width: 100%;
+        tbody {
+          display: grid;
+          grid-template-rows: auto;
+          gap: 2px;
+          tr {
+            display: grid;
+            gap: 2px;
+            td {
+              padding: 4px 8px;
+            }
+          }
+        }
+      }
+      table:first-child tbody tr {
+        grid-template-columns: 1fr 1.5fr 1fr;
+      }
+      table:last-child tbody tr {
+        grid-template-columns: 1fr 1fr 1fr;
+      }
+    }
+    .preview_main_visit_data{
+      width: 100%;
+      text-align: right;
+      p{
+        margin: 0 0 10px;
+      }
+      .content{
+        display: flex;
+        direction: rtl;
+        padding: 0 20px 0 0;
+      }
+    }
+    .preview_main_approved_for_surgery,
+    .preview_main_habits,
+    .preview_main_medical_background,
+    .preview_main_anesthetic_history,
+    .preview_main_asa,
+    .preview_main_frail_scale,
+    .preview_main_rcri,
+    .preview_main_stop_bang,
+    .preview_main_surgery_details,
+    .preview_main_clinical_frail_scale,
+    .preview_main_clinical_mini_cog,
+    .preview_main_physical_examination,
+    .preview_main_laboratory_tests_imaging_and_auxiliary_tests,
+    .preview_main_consultants,
+    .preview_main_ariscat_score,
+    .preview_main_obstructive_sleep_apnea,
+    .preview_main_anesthesia_history,
+    .preview_main_timed_up_and_go_test,
+    .preview_main_summary,
+    .preview_main_upper_airway_assessment,
+    .preview_main_preoperative_laboratory_tests,
+    .preview_main_additional_auxiliary_tests,
+    .preview_main_pre_operative_anesthesiologist_appointments {
+      width: 100%;
+      text-align: right;
+      p{
+        margin: 0 0 10px;
+      }
+      ul{
+        list-style: none;
+        margin: 0;
+        li{
+          display: flex;
+          direction: rtl;
+          margin: 5px 0;
+          padding-right: 20px;
+        }
+      }
+    }
+    .preview_main_planned_surgeries, .preview_main_past_surgeries {
+      width: 100%;
+      text-align: right;
+      p{
+        margin: 0 0 10px;
+      }
+      ul{
+        text-align: left;
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        li{
+          margin: 5px 0;
+        }
+      }
+    }
+    .preview_main_vital_signs{
+      width: 100%;
+      text-align: right;
+      p{
+        margin: 0 0 10px;
+      }
+      table{
+        width: 100%;
+        direction: rtl;
+        border: 1px solid #000000;
+        border-collapse: collapse;
+        margin-bottom: 10px;
+        thead tr th, tbody tr td{
+          padding: 3px;
+          border: 1px solid #000000;
+        }
+        thead tr th span, tbody tr td span{
+          font-weight: normal;
+        }
+      }
+    }
+    .preview_main_instructions_and_indicators,
+    .preview_main_drug_sensitivity {
+      width: 100%;
+      text-align: right;
+      p{
+        margin: 0 0 10px;
+      }
+      table{
+        width: 100%;
+        direction: rtl;
+        border: none;
+        thead tr th, tbody tr td{
+          text-align: right;
+        }
+      }
+    }
+    .preview_main_drug_sensitivity{
+      direction: rtl;
+      table{
+        width: 330px;
+        thead tr th, tbody tr td{
+          width: 50%;
+        }
+      }
+    }
+    .preview_main_sensitivity_to_substances, .preview_main_approved_for_surgery, .preview_main_regular_medication_treatment{
+      width: 100%;
+      text-align: right;
+      p{
+        margin: 0 0 10px;
+      }
+      span{
+
+        font-size: 13px;
+      }
+      table{
+        width: 100%;
+        border: 1px solid #000000;
+        border-collapse: collapse;
+        thead tr, tbody tr {
+          height: 23px;
+        }
+        thead tr th, tbody tr td{
+          border: 1px solid #000000;
+          text-align: left;
+          font-weight: normal;
+          padding: 3px;
+        }
+        thead tr th:first-child{
+          width: 40%;
+        }
+      }
+    }
+    .preview_main_past_history {
+      width: 100%;
+      text-align: right;
+      p{
+        margin: 0 0 10px;
+      }
+      ul{
+        text-align: left;
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        li{
+          margin: 5px 0;
+        }
+      }
+    }
+    .preview_main_regular_medications{
+      width: 100%;
+      text-align: right;
+      p{
+        margin: 0 0 10px;
+      }
+      span{
+
+        font-size: 13px;
+      }
+      table{
+        border: none;
+        tbody tr td{
+          text-align: left;
+          vertical-align: top;
+          padding: 0 3px 6px;
+          font-weight: normal;
+        }
+        tbody tr td:first-child{
+          width: 240px;
+        }
+      }
+    }
+    .preview_main_functional_capacity, .preview_main_mini_cog{
+      width: 100%;
+      text-align: right;
+      p{
+        margin: 0 0 10px;
+      }
+      table {
+        width: 100%;
+        direction: rtl;
+        tbody tr td{
+          width: 50%;
+          vertical-align: top;
+          ul{
+            list-style: none;
+            padding: 0;
+          }
+        }
+      }
+    }
+    .preview_main_timed_up_and_go_test{
+      div{
+        margin-top: 20px;
+        table{
+          width: 100%;
+          border: 1px solid #000000;
+          border-collapse: collapse;
+          direction: rtl;
+          tr th, tr td{
+            border: 1px solid #000000;
+            text-align: center;
+            padding: 3px;
+            font-weight: normal;
+            width: 50%;
+            span{
+              font-size: 13px;
+            }
+          }
+          thead tr th:first-child{
+            width: 40%;
+          }
+        }
+      }
+    }
+    .preview_main_estimated_scores{
+      width: 100%;
+      direction: rtl;
+      text-align: right;
+      p{
+        margin: 0 0 10px;
+      }
+      span{
+        font-size: 13px;
+      }
+      table{
+        width: 100%;
+        border: 1px solid #000000;
+        border-collapse: collapse;
+        thead tr th, tbody tr td{
+          text-align: center;
+          border: 1px solid #000000;
+          font-weight: normal;
+          font-size: 13px;
+          padding: 3px;
+          &:nth-child(1), &:nth-child(2){
+            width: 25%;
+          }
+          &:nth-child(3){
+            width: 15%;
+          }
+        }
+      }
+    }
+    .preview_main_preoperative_laboratory_tests,
+    .preview_main_additional_auxiliary_tests,
+    .preview_main_pre_operative_anesthesiologist_appointments{
+      direction: rtl;
+      ul{
+        padding: 0;
+      }
+    }
+    .preview_main_anesthesiologist_signature{
+      width: 100%;
+      text-align: right;
+      margin-top: 20px;
+      direction: rtl;
+      p{
+        margin: 0 0 10px;
+      }
+      table {
+        width: 100%;
+        border: 1px solid #000000;
+        thead tr th, tbody tr td {
+          text-align: center;
+          font-size: 13px;
+          font-weight: normal;
+          padding: 3px;
+        }
+      }
+    }
+  }
+  .preview_footer {
+    display: flex;
+    direction: rtl;
+    position: fixed;
+    bottom: 30px;
+    justify-content: flex-end;
+    margin-top: 20px;
+    .preview_button {
+      direction: rtl;
+      width: 220px;
+      height: 56px;
+      padding: 10px 20px;
+      font-size: 16px;
+      font-family: "Noto Sans Hebrew", serif;
+      font-weight: 500;
+      cursor: pointer;
+      background-color: #0046C9;
+      color: #fff;
+      border: none;
+      border-radius: 28px;
+      transition: all .3s linear;
+
+      &:hover {
+        background-color: #003AA7;
+      }
+    }
+  }
+}
+
+.preview_header_for_print{
+  display: none;
+  height: auto;
+  box-sizing: border-box;
+  flex-direction: column;
+  align-items: center;
+  direction: rtl;
+  z-index: 9999;
+  gap: 3px;
+  p{
+    margin: 0;
+  }
+  table {
+    width: auto;
+    direction: rtl;
+    tbody tr td {
+      padding: 3px 4px;
+      font-size: 12px;
+      font-family: "Noto Sans Hebrew", serif;
+    }
+  }
+}
+
+@page {
+  size: A4;
+  margin: 10mm 20mm 20mm;
+  @top-center {
+    content: '';
+  }
+  @bottom-left {
+    content: "Page " counter(page) " of " counter(pages);
+    font-size: 12px;
+    font-family: "Noto Sans Hebrew", serif;
+  }
+}
+
+@media print {
+  //.preview_header_for_print {
+  //  display: flex;
+  //  position: fixed;
+  //  top: 0;
+  //  left: 0;
+  //  width: 100%;
+  //}
+  .preview {
+    unicode-bidi: embed;
+  }
+  footer {
+    display: none;
+    visibility: hidden;
+    opacity: 0;
+  }
+}
