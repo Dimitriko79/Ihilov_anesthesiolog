@@ -5,7 +5,7 @@ const PreviewFooter = ({onPrint}) => {
     return (
         <footer className={classes.preview_footer}>
             <button className={classes.preview_button} onClick={onPrint}>
-                הדפסה
+                הדפסה/שמירה
             </button>
         </footer>
     )
