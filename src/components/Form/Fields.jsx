@@ -51,7 +51,7 @@ const Fields = (props) => {
             ) : (
                 <input
                     className={value === 0 || value === "" ? classes.field : classes.field_valid}
-                    type={fieldType === "number" ? "text" : fieldType}
+                    type={fieldType}
                     onChange={(e) => handleDataUser(path, e)}
                     readOnly={readonly || false}
                     name={field}

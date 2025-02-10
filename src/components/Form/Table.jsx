@@ -33,7 +33,7 @@ const Table = ({ items, classes, handleDataUser, handleNewRow, handleRemoveRow, 
                                 <td key={i} style={{width: columnWidth ? `${columnWidth.toFixed(0)}px` : "auto"}}>
                                     <input
                                         className={value === 0 || value === "" ? classes.field : classes.field_valid}
-                                        type={type_field === "number" ? "text" : type_field}
+                                        type={type_field}
                                         onChange={(e) => handleDataUser([...currentPath, i], e)}
                                         readOnly={readonly || false}
                                         name={name_category}
