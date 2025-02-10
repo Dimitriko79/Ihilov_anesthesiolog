@@ -4,7 +4,7 @@ import Fields from "./Fields.jsx";
 import Table from "./Table.jsx";
 
 const Form = () => {
-    const { dataUser, handleDataUser, handleNewRow, onSubmit } = useForm();
+    const { dataUser, handleDataUser, handleNewRow, handleRemoveRow, onSubmit } = useForm();
     console.log(7777, dataUser)
     const renderFields = (items, step, parentPath = []) => {
         if (!items) return null;
@@ -21,6 +21,7 @@ const Form = () => {
                         classes={classes}
                         handleDataUser={handleDataUser}
                         handleNewRow={handleNewRow}
+                        handleRemoveRow={handleRemoveRow}
                         path={currentPath}
                     />
                 );

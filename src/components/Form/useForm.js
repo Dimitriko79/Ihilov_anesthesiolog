@@ -6,11 +6,11 @@ export const useForm = () => {
     const dispatch = useDispatch();
     const { data } = useSelector(state => state.data);
 
-    const [dataUser, setDataUser] = useState(null);
+    // const [dataUser, setDataUser] = useState(null);
 
-    useEffect(() => {
-        setDataUser(data);
-    }, [data]);
+    // useEffect(() => {
+    //     setDataUser(data);
+    // }, [data]);
 
     function updateValueByPath(obj, path, newValue) {
         const newObj = JSON.parse(JSON.stringify(obj));
@@ -26,7 +26,7 @@ export const useForm = () => {
         temp[path[path.length - 1]].value = newValue;
         return newObj;
     }
-//TODO
+
     function addNewRowTable(obj, path) {
         const newObj = JSON.parse(JSON.stringify(obj));
         let temp = newObj;
@@ -36,35 +36,72 @@ export const useForm = () => {
         }
 
         if (temp.rows && temp.rows.length > 0) {
-            temp.rows.push(JSON.parse(JSON.stringify(temp.rows[0])));
+            const newRow = JSON.parse(JSON.stringify(temp.rows[0]));
+
+            if (newRow.values && Array.isArray(newRow.values)) {
+                newRow.values.forEach(valueObj => {
+                    if (valueObj.hasOwnProperty('value')) {
+                        valueObj.value = "";
+                    }
+                });
+            }
+
+            temp.rows.push(newRow);
         }
         return newObj;
     }
 
-    function handleDataUser(path, e) {
-        e.preventDefault();
-        setDataUser(prevData => updateValueByPath(prevData, path, e.target.value));
+    function removeRowTable(obj, path) {
+        const newObj = JSON.parse(JSON.stringify(obj));
+        let temp = newObj;
+
+        for (let i = 0; i < path.length - 1; i++) {
+            temp = temp[path[i]];
+        }
+
+        if (temp.rows && temp.rows.length > 1) {
+            const indexToRemove = path[path.length - 1];
+
+            if (indexToRemove >= 0 && indexToRemove < temp.rows.length) {
+                temp.rows.splice(indexToRemove, 1);
+            }
+        }
+
+        return newObj;
     }
 
-    function handleNewRow(path, e) {
+    async function handleDataUser(path, e) {
         e.preventDefault();
-        setDataUser(prevData => addNewRowTable(prevData, path));
+        const newData = await updateValueByPath(data, path, e.target.value);
+        await dispatch(updateData(newData));
+    }
+
+    async function handleNewRow(path, e) {
+        e.preventDefault();
+        const newData = await addNewRowTable(data, path);
+        await dispatch(updateData(newData));
+    }
+
+    async function handleRemoveRow(path, e) {
+        e.preventDefault();
+        const newData = await removeRowTable(data, path);
+        await dispatch(updateData(newData));
     }
 
     const onSubmit = useCallback( async event => {
         event.preventDefault();
         try {
-            await dispatch(updateData(dataUser));
             await dispatch(updateView('preview'));
         } catch (err) {
             console.error('Error uploading files:', err);
         }
-    }, [dataUser, dispatch]);
+    }, [dispatch]);
 
     return {
-        dataUser,
+        dataUser: data,
         handleDataUser,
         handleNewRow,
+        handleRemoveRow,
         onSubmit
     };
 };

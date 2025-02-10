@@ -1,15 +1,25 @@
 import PropTypes from 'prop-types';
 import {useEffect, useRef, useState} from "react";
 
-const Table = ({ items, classes, handleDataUser, handleNewRow, path }) => {
+const Table = ({ items, classes, handleDataUser, handleNewRow, handleRemoveRow, path }) => {
     const tableRef = useRef(null);
     const [columnWidth, setColumnWidth] = useState(0);
+
+    useEffect(() => {
+        if (tableRef.current) {
+            const tableWidth = tableRef.current.offsetWidth;
+            const columns = items && items.length && items[0]?.values?.length ? items[0].values.length :  0;
+            if (columns > 0) {
+                setColumnWidth(tableWidth / columns);
+            }
+        }
+    }, [items]);
 
     const tableItems = items.map((item, index) => {
         const currentPath = [...path, index];
         const { values } = item;
 
-        const content = (
+        return (
             <>
                 <tr key={index}>
                     {
@@ -22,7 +32,7 @@ const Table = ({ items, classes, handleDataUser, handleNewRow, path }) => {
                                         className={value === 0 || value === "" ? classes.field : classes.field_valid}
                                         type={type_field}
                                         onChange={(e) => handleDataUser([...currentPath, i], e)}
-                                        // readOnly={readonly || false}
+                                        readOnly={readonly || false}
                                         name={name_category}
                                         value={type_field === 'boolean' ? value ? "true" : "false" : value ? value : ""}
                                     />
@@ -31,29 +41,25 @@ const Table = ({ items, classes, handleDataUser, handleNewRow, path }) => {
 
                         })
                     }
+                    <td>
+                        <button className={classes.removeRow} type="button" title="למחוק שורה"
+                                onClick={e => handleRemoveRow(currentPath, e)}><span>-</span></button>
+                    </td>
                 </tr>
-                {/*{index === items.length - 1 && (*/}
-                {/*    <button type="button"  onClick={e => handleNewRow(currentPath, e)}><span>+</span></button>*/}
-                {/*)}*/}
+                {index === items.length - 1 && (
+                    <button className={classes.addRow} type="button" title="להוסיף שורה"
+                            onClick={e => handleNewRow(currentPath, e)}><span>+</span></button>
+                )}
             </>
-        )
+        );
+    });
 
-        // eslint-disable-next-line react-hooks/rules-of-hooks
-        useEffect(() => {
-            if (tableRef.current) {
-                const tableWidth = tableRef.current.offsetWidth;
-                const columns = values.length;
-                if (columns > 0) {
-                    setColumnWidth(tableWidth / columns);
-                }
-            }
-        }, [values]);
-
-        return (
-            <table ref={tableRef} className={classes.table} key={index}>
+    return (
+        <div className={classes.table_container}>
+            <table ref={tableRef} className={classes.table}>
                 <thead>
                 <tr>
-                    {values.map((item, i) => (
+                    {items && items.length && items[0].values.map((item, i) => (
                         <th key={i} style={{width: columnWidth ? `${columnWidth.toFixed(0)}px` : "auto"}}>
                             {item.name_category}
                         </th>
@@ -61,19 +67,11 @@ const Table = ({ items, classes, handleDataUser, handleNewRow, path }) => {
                 </tr>
                 </thead>
                 <tbody>
-
-                {content}
-
+                {tableItems}
                 </tbody>
             </table>
-        );
-    });
-
-    return (
-        <div className={classes.table_container}>
-            {tableItems}
         </div>
-    );
+);
 };
 
 Table.propTypes = {
@@ -97,6 +95,7 @@ Table.propTypes = {
     }).isRequired,
     handleDataUser: PropTypes.func.isRequired,
     handleNewRow: PropTypes.func.isRequired,
+    handleRemoveRow: PropTypes.func.isRequired,
     path: PropTypes.array.isRequired,
 };
 
