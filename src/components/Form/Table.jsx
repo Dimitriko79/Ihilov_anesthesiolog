@@ -1,5 +1,6 @@
 import PropTypes from 'prop-types';
 import {useEffect, useRef, useState} from "react";
+import {formatDateToISO} from "../../helpers/checkFormatDate.js";
 
 const Table = ({ items, classes, handleDataUser, handleNewRow, handleRemoveRow, path }) => {
     const tableRef = useRef(null);
@@ -26,15 +27,17 @@ const Table = ({ items, classes, handleDataUser, handleNewRow, handleRemoveRow, 
                         values.map((item, i) => {
 
                             const {value, name_category, readonly, type_field} = item;
+
+                            const valueParse = type_field === "date" ? formatDateToISO(value) : type_field === 'boolean' ? value ? "true" : "false" : value ? value : "";
                             return (
                                 <td key={i} style={{width: columnWidth ? `${columnWidth.toFixed(0)}px` : "auto"}}>
                                     <input
                                         className={value === 0 || value === "" ? classes.field : classes.field_valid}
-                                        type={type_field}
+                                        type={type_field === "number" ? "text" : type_field}
                                         onChange={(e) => handleDataUser([...currentPath, i], e)}
                                         readOnly={readonly || false}
                                         name={name_category}
-                                        value={type_field === 'boolean' ? value ? "true" : "false" : value ? value : ""}
+                                        value={valueParse}
                                     />
                                 </td>
                             )

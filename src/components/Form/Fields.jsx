@@ -1,5 +1,6 @@
 import PropTypes from "prop-types";
 import React, { useState } from "react";
+import {formatDateToISO} from "../../helpers/checkFormatDate.js";
 
 const Fields = (props) => {
     const { classes, data, handleDataUser, path } = props;
@@ -7,24 +8,7 @@ const Fields = (props) => {
     const [isFieldOpen, setIsFieldOpen] = useState(false);
     const [otherFieldValue, setOtherFieldValue] = useState('');
 
-    const formatDateToISO = (dateString) => {
-        const [day, month, year] = dateString.split('.');
-        return `${year}-${month}-${day}`;
-    };
-
-    function detectDateType(dateString) {
-        if (/^\d{4}-\d{2}-\d{2}$/.test(dateString)) {
-            return dateString;
-        } else if (/^\d{2}\.\d{2}\.\d{4}$/.test(dateString)) {
-            return formatDateToISO(dateString);
-        } else if (/^\d{2}:\d{2}$/.test(dateString) || /^\d{4}$/.test(dateString)) {
-            return "time";
-        } else {
-            return "unknown";
-        }
-    }
-
-    const valueParse = fieldType === "date" && detectDateType(value) !== "time" && value !== '' ? detectDateType(value) : value ? value : "";
+    const valueParse = fieldType === "date" ? formatDateToISO(value) : value;
 
     return (
         <React.Fragment>
@@ -67,7 +51,7 @@ const Fields = (props) => {
             ) : (
                 <input
                     className={value === 0 || value === "" ? classes.field : classes.field_valid}
-                    type={fieldType === "date" && detectDateType(value) !== "time" ? "date" : "text"}
+                    type={fieldType === "number" ? "text" : fieldType}
                     onChange={(e) => handleDataUser(path, e)}
                     readOnly={readonly || false}
                     name={field}
