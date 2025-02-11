@@ -46,7 +46,7 @@ export const useForm = () => {
                 });
             }
 
-            temp.rows.unshift(newRow);
+            temp.rows.push(newRow);
         }
         return newObj;
     }
