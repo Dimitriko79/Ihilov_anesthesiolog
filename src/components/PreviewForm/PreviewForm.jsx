@@ -575,7 +575,7 @@ const PreviewForm = () => {
                     {/*    </ul>*/}
                     {/*</div>*/}
                     <div className={`${classes.preview_main_pre_operative_anesthesiologist_appointments}`}>
-                        <p><strong>אוראות רופא מרדים טרום ניתוח</strong></p>
+                        <p><strong>הוראות רופא מרדים טרום ניתוח</strong></p>
                         <ul>
                             <li>
                                 <span>צום 6 שעות מזון צום 2 שעות מים</span>
