@@ -5,6 +5,7 @@ import S3Service from "../../services/S3Service.js";
 import axios from 'axios';
 
 const FOLDER = "folder-in-s3";
+const COUNT_FILES = 7;
 
 export const useApp = () => {
     const fileRef = useRef(null);
@@ -28,8 +29,8 @@ export const useApp = () => {
 
                 const totalFilesCount = prevFiles.length + uniqueFiles.length;
 
-                if (totalFilesCount > 5) {
-                    setErrorMessage('You can upload a maximum of 5 files.');
+                if (totalFilesCount > COUNT_FILES) {
+                    setErrorMessage(`You can upload a maximum of ${COUNT_FILES} files.`);
                 } else {
                     setErrorMessage('');
                 }
@@ -42,8 +43,8 @@ export const useApp = () => {
     const handleFileRemove = index => {
         const tempFiles = files.filter((_, i) => i !== index);
         const totalFilesCount = tempFiles.length;
-        if (totalFilesCount > 5) {
-            setErrorMessage('You can upload a maximum of 5 files.');
+        if (totalFilesCount > COUNT_FILES) {
+            setErrorMessage(`You can upload a maximum of ${COUNT_FILES} files.`);
         } else {
             setErrorMessage('');
         }
