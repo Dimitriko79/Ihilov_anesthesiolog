@@ -27,9 +27,9 @@ const PreviewHeader = ({ nowDate }) => {
                 <div className={classes.preview_header__abbr}>
                     <span>מדינת ישראל</span>
                     <span>משרד הבריאות</span>
-                    <span>המרקז הרפואי תל-אביב ע״ש סוראסקי</span>
-                    <span>מסונף לפקולטה לרפואה באוניברסיטה תל-אביב</span>
-                    <span>רח׳ ויזמן 6, תל-אביב 6423906</span>
+                    <span>המרכז הרפואי תל-אביב ע״ש סוראסקי</span>
+                    <span>מסונף לפקולטה לרפואה באוניברסיטת תל-אביב</span>
+                    <span>רח׳ וייצמן 6, תל-אביב 6423906</span>
                     <span>טל: 03-6974444</span>
                 </div>
             </div>
