@@ -1,10 +1,12 @@
-import {useCallback, useRef, useState} from 'react';
-import {updateData, updateView} from "../../reducers/anesthesiaSheetReducer.js";
-import {useDispatch} from "react-redux";
+import { useCallback, useRef, useState } from 'react';
+import { updateData, updateView } from "../../reducers/anesthesiaSheetReducer.js";
+import { useDispatch } from "react-redux";
 import S3Service from "../../services/S3Service.js";
+import uploadService from "../../services/uploadService.js";
 import axios from 'axios';
+import { v4 as uuidv4 } from 'uuid';
 
-const FOLDER = "folder-in-s3";
+// const FOLDER = "folder-in-s3";
 const COUNT_FILES = 7;
 
 export const useApp = () => {
@@ -53,7 +55,9 @@ export const useApp = () => {
 
     const handleDataFromFiles = useCallback(async (names) => {
         try {
-            return await axios.post("https://yjbsunrt6g.execute-api.us-east-1.amazonaws.com/test", {file_names: names}, {headers: {"Content-Type": "application/json"}});
+            return await axios.post("https://yjbsunrt6g.execute-api.us-east-1.amazonaws.com/test",
+                { file_names: names },
+                { headers: { "Content-Type": "application/json" } });
         } catch (error) {
             console.error("Error get data:", error);
         }
@@ -75,11 +79,15 @@ export const useApp = () => {
                 alert("Please select files to upload!");
                 return;
             }
-            const results = await S3Service.uploadFile(files, FOLDER);
+            const fileNames = files.map((file) => {
+                const guid = uuidv4();
+                return `${guid}_${file.name}`;
+            });
+            // const results = await S3Service.uploadFile(files, FOLDER);
+            const results = await uploadService.uploadFile(files, fileNames);
             if (results && results.length > 0) {
                 setIsUploading(true);
                 console.log("Files uploaded successfully!", results);
-                const fileNames = files.map((file) => `${FOLDER}/${file.name}`);
                 const response = await handleDataFromFiles(fileNames);
 
                 console.log("Getting response", response)
@@ -89,8 +97,7 @@ export const useApp = () => {
                     response.data.response &&
                     response.data.response.categories &&
                     response.data.response.categories.length &&
-                    response.data.status === "success")
-                {
+                    response.data.status === "success") {
                     const categories = !Array.isArray(response.data.response.categories) ? Object.values(response.data.response.categories) : response.data.response.categories;
                     await dispatch(updateData(categories));
                     await dispatch(updateView("details"));
