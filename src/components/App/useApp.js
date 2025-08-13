@@ -84,11 +84,11 @@ export const useApp = () => {
                 return `${guid}_${file.name}`;
             });
             // const results = await S3Service.uploadFile(files, FOLDER);
-            const results = await uploadService.uploadFile(files, fileNames);
-            if (results && results.length > 0) {
+            const response = await uploadService.uploadFile(files, fileNames);
+            if (response && response.length > 0) {
                 setIsUploading(true);
-                console.log("Files uploaded successfully!", results);
-                const response = await handleDataFromFiles(fileNames);
+                console.log("Files uploaded successfully!", response);
+              //  const response = await handleDataFromFiles(fileNames);
 
                 console.log("Getting response", response)
                 if (
