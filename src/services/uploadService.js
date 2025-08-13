@@ -13,23 +13,26 @@ const uploadFile = async (files, fileNames, userId = 'test-user-123') => {
 
         // שלב 2 - העלאה לכל קובץ
         for (const file of files) {
-            const i = 0;
+            let i = 0;
             try {
-                const { data: { uploadUrl, key } } = await axios.get(
+                const { data: { uploadUrl, key, contentType } } = await axios.get(
                     `${BASE_URL}/get_s3_url?key=${encodeURIComponent(fileNames[i])}`
                 );
 
-                await axios.put(uploadUrl, file, {
-                    headers: {
-                        'Content-Type': file.type || 'application/octet-stream',
-                    },
-                });
+                await axios.put(uploadUrl, file,
+                    {
+                        headers: {
+                            'Content-Type': contentType
+                        }
+                    }
+                );
 
                 results.push({
                     fileName: file.name,
                     status: 'success',
                 });
             } catch (err) {
+                console.error('xxxxxx:', err.response?.status, err.response?.data);
                 results.push({
                     fileName: file.name,
                     status: 'error',
