@@ -3,11 +3,11 @@ import axios from 'axios';
 const BASE_URL = 'https://yjbsunrt6g.execute-api.us-east-1.amazonaws.com/test';
 
 const uploadFile = async (files, fileNames, userId = 'test-user-123') => {
-    const results = [];
 
     if (!userId || !files?.length || !fileNames?.length) {
         throw new Error('Missing userId or files');
     }
+     let results;
 
     try {
         let i = -1;
@@ -27,18 +27,11 @@ const uploadFile = async (files, fileNames, userId = 'test-user-123') => {
                     }
                 );
 
-                results.push({
-                    fileName: file.name,
-                    status: 'success',
-                });
+            
             } catch (err) {
                 console.error(err);
                 console.error('xxxxxx:', err.response?.status, err.response?.data);
-                results.push({
-                    fileName: file.name,
-                    status: 'error',
-                    error: err.message,
-                });
+             
             }
         }
         const processBody = {
@@ -52,7 +45,7 @@ const uploadFile = async (files, fileNames, userId = 'test-user-123') => {
             }),
         };
 
-        await axios.post(`${BASE_URL}/l-process`, processBody);
+       results=  await axios.post(`${BASE_URL}/l-process`, processBody);
     } catch (err) {
         console.error('שגיאה בשלב l-process:', err);
         throw err;

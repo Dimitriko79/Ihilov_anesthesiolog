@@ -83,12 +83,9 @@ export const useApp = () => {
                 const guid = uuidv4();
                 return `${guid}_${file.name}`;
             });
-            // const results = await S3Service.uploadFile(files, FOLDER);
             const response = await uploadService.uploadFile(files, fileNames);
-            if (response && response.length > 0) {
+            if (response) {
                 setIsUploading(true);
-                console.log("Files uploaded successfully!", response);
-              //  const response = await handleDataFromFiles(fileNames);
 
                 console.log("Getting response", response)
                 if (
