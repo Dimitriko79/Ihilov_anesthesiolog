@@ -32,6 +32,7 @@ const uploadFile = async (files, fileNames, userId = 'test-user-123') => {
                     status: 'success',
                 });
             } catch (err) {
+                console.error(err);
                 console.error('xxxxxx:', err.response?.status, err.response?.data);
                 results.push({
                     fileName: file.name,
