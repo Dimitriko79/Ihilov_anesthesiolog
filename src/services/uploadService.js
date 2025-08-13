@@ -10,10 +10,10 @@ const uploadFile = async (files, fileNames, userId = 'test-user-123') => {
     }
 
     try {
-
+        let i = -1;
         // שלב 2 - העלאה לכל קובץ
         for (const file of files) {
-            let i = 0;
+            i++;
             try {
                 const { data: { uploadUrl, key, contentType } } = await axios.get(
                     `${BASE_URL}/get_s3_url?key=${encodeURIComponent(fileNames[i])}`
@@ -40,7 +40,6 @@ const uploadFile = async (files, fileNames, userId = 'test-user-123') => {
                     error: err.message,
                 });
             }
-            i++;
         }
         const processBody = {
             httpMethod: 'POST',
